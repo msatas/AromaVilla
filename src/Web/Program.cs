@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
+builder.Services.AddDbContext<ShopContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("ShopContext")));
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
